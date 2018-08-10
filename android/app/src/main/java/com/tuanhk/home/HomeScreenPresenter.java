@@ -1,23 +1,17 @@
-package com.tuanhk.login;
+package com.tuanhk.home;
 
 import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.ui.presenter.AbstractPresenter;
 
 import javax.inject.Inject;
 
-public class LoginScreenPresenter extends AbstractPresenter<ILoginScreenView> {
+public class HomeScreenPresenter extends AbstractPresenter<IHomeScreenView> {
 
     UserConfig mUserConfig;
 
     @Inject
-    public LoginScreenPresenter(UserConfig userConfig) {
+    public HomeScreenPresenter(UserConfig userConfig) {
         mUserConfig = userConfig;
-    }
-
-    public void autoLogin() {
-        if (mUserConfig.hasCurrentUser()) {
-            mView.gotoHomeScreen();
-        }
     }
 
     public void saveLogin(boolean status) {

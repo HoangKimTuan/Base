@@ -42,7 +42,7 @@ public class DemoFragment extends BaseFragment implements DemoView {
     }
 
     @OnClick(R.id.demo)
-    void OnClickDemo() {
+    void onClickDemo() {
         Toast.makeText(getContext(), presenter.a, Toast.LENGTH_SHORT).show();
     }
 }

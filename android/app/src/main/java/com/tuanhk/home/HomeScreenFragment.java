@@ -1,4 +1,4 @@
-package com.tuanhk.login;
+package com.tuanhk.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,13 +11,13 @@ import javax.inject.Inject;
 
 import butterknife.OnClick;
 
-public class LoginScreenFragment extends BaseFragment implements ILoginScreenView {
+public class HomeScreenFragment extends BaseFragment implements IHomeScreenView {
 
     @Inject
-    LoginScreenPresenter presenter;
+    HomeScreenPresenter presenter;
 
-    public static LoginScreenFragment newInstance(Bundle args) {
-        LoginScreenFragment fragment = new LoginScreenFragment();
+    public static HomeScreenFragment newInstance(Bundle args) {
+        HomeScreenFragment fragment = new HomeScreenFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -29,25 +29,24 @@ public class LoginScreenFragment extends BaseFragment implements ILoginScreenVie
 
     @Override
     protected int getResLayoutId() {
-        return R.layout.activity_login_screen;
+        return R.layout.activity_home_screen;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.attachView(this);
-        presenter.autoLogin();
     }
 
     @Override
-    public void gotoHomeScreen() {
-        navigator.startHomeActivity(getContext());
+    public void backToLoginScreen() {
+        navigator.startLoginActivity(getContext());
         getActivity().finish();
     }
 
-    @OnClick(R.id.login)
-    void onClickLogin() {
-        presenter.saveLogin(true);
-        gotoHomeScreen();
+    @OnClick(R.id.home)
+    void onClickHome() {
+        presenter.saveLogin(false);
+        backToLoginScreen();
     }
 }

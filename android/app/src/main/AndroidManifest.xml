@@ -27,6 +27,7 @@
         <activity android:name=".demo.DemoActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".login.LoginScreenActivity"></activity>
+        <activity android:name=".home.HomeScreenActivity"></activity>
     </application>
 
 </manifest>
