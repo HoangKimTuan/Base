@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvNameCommentLike"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:layout_marginBottom="@dimen/margin_bottom_min"/>
+
+    <TextView
+        android:id="@+id/tvEmailCommentLike"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown"
+        android:layout_marginBottom="@dimen/margin_bottom_min"/>
+
+    <TextView
+        android:id="@+id/tvBodyCommentLike"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_min"/>
+
+    <Button
+        android:id="@+id/btnRemoveCommentLike"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:layout_marginBottom="@dimen/margin_bottom_min" />
+
+</LinearLayout>

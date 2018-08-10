@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TuanHK</string>
+    <string name="comment">Comment</string>
+    <string name="photo">Photo</string>
+    <string name="like_comment">Like comment</string>
+    <string name="like_photo">Like photo</string>
+    <string name="home">Home</string>
+</resources>
