@@ -17,6 +17,7 @@ import com.tuanhk.data.db.DbHelper;
 import com.tuanhk.data.db.DbOpenHelper;
 import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
+import com.tuanhk.login.LoginScreenPresenter;
 import com.tuanhk.splashscreen.ISplashScreenView;
 import com.tuanhk.splashscreen.SplashScreenPresenter;
 import com.tuanhk.ui.presenter.IPresenter;
@@ -127,5 +128,11 @@ public class ApplicationModule {
     @Singleton
     SplashScreenPresenter provideSplashScreenPresenterer() {
         return new SplashScreenPresenter();
+    }
+
+    @Provides
+    @Singleton
+    LoginScreenPresenter provideLoginScreenPresenterer() {
+        return new LoginScreenPresenter();
     }
 }

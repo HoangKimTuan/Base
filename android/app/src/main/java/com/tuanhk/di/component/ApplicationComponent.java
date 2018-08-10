@@ -6,6 +6,7 @@ import android.content.Context;
 import com.tuanhk.TuanHKApp;
 import com.tuanhk.data.DataManager;
 import com.tuanhk.di.module.ApplicationModule;
+import com.tuanhk.login.LoginScreenFragment;
 import com.tuanhk.navigation.Navigator;
 import com.tuanhk.splashscreen.SplashScreenFragment;
 import com.tuanhk.util.anotation.ApplicationContext;
@@ -28,4 +29,5 @@ public interface ApplicationComponent {
     Context context();
     Navigator navigator();
     void inject(SplashScreenFragment splashScreenFragment);
+    void inject(LoginScreenFragment loginScreenFragment);
 }

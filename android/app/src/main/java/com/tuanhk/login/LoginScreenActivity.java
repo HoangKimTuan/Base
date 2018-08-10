@@ -1,15 +1,16 @@
 package com.tuanhk.login;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.annotation.Nullable;
 
-import com.tuanhk.R;
+import com.tuanhk.splashscreen.SplashScreenFragment;
+import com.tuanhk.ui.activity.BaseActivity;
+import com.tuanhk.ui.fragment.BaseFragment;
 
-public class LoginScreenActivity extends AppCompatActivity {
+public class LoginScreenActivity extends BaseActivity {
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_screen);
+    protected BaseFragment getFragmentToHost() {
+        return LoginScreenFragment.newInstance(getIntent().getExtras());
     }
 }
