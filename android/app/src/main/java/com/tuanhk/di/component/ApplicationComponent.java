@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.tuanhk.TuanHKApp;
 import com.tuanhk.data.DataManager;
+import com.tuanhk.data.cache.AppStore;
 import com.tuanhk.di.module.ApplicationModule;
 import com.tuanhk.home.HomeScreenFragment;
 import com.tuanhk.login.LoginScreenFragment;
@@ -29,6 +30,7 @@ public interface ApplicationComponent {
     @ApplicationContext
     Context context();
     Navigator navigator();
+    AppStore.Repository appRepository();
     void inject(SplashScreenFragment splashScreenFragment);
     void inject(LoginScreenFragment loginScreenFragment);
     void inject(HomeScreenFragment homeScreenFragment);

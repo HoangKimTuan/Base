@@ -12,11 +12,13 @@ import android.preference.PreferenceManager;
 import com.tuanhk.BuildConfig;
 import com.tuanhk.data.AppDataManager;
 import com.tuanhk.data.DataManager;
+import com.tuanhk.data.cache.AppStore;
 import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.data.db.AppDbHelper;
 import com.tuanhk.data.db.DbHelper;
 import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
+import com.tuanhk.data.repository.AppRepositoryImpl;
 import com.tuanhk.home.HomeScreenPresenter;
 import com.tuanhk.internal.UserConfigImpl;
 import com.tuanhk.login.LoginScreenPresenter;
@@ -27,6 +29,7 @@ import com.tuanhk.utils.anotation.DatabaseInfo;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.tuanhk.utils.anotation.UserScope;
 
 import javax.inject.Singleton;
 
@@ -145,5 +148,15 @@ public class ApplicationModule {
     @Singleton
     HomeScreenPresenter provideHomeScreenPresenterer(UserConfig userConfig) {
         return new HomeScreenPresenter(userConfig);
+    }
+
+    @Provides
+    AppStore.RequestService providesAccountService(Retrofit retrofit) {
+        return retrofit.create(AppStore.RequestService.class);
+    }
+
+    @Provides
+    AppStore.Repository providesAccountRepository(AppStore.RequestService service) {
+        return new AppRepositoryImpl(service);
     }
 }
