@@ -3,8 +3,8 @@ package com.tuanhk.data.db;
 import android.content.Context;
 
 import com.tuanhk.data.db.model.DaoMaster;
-import com.tuanhk.util.anotation.ApplicationContext;
-import com.tuanhk.util.anotation.DatabaseInfo;
+import com.tuanhk.utils.anotation.ApplicationContext;
+import com.tuanhk.utils.anotation.DatabaseInfo;
 
 import org.greenrobot.greendao.database.Database;
 

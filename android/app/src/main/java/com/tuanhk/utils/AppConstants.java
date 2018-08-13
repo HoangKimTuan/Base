@@ -1,4 +1,4 @@
-package com.tuanhk.util;
+package com.tuanhk.utils;
 
 /**
  * Created by cpu10225 on 14/11/2017.

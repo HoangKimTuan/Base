@@ -5,4 +5,8 @@
     <string name="like_comment">Like comment</string>
     <string name="like_photo">Like photo</string>
     <string name="home">Home</string>
+
+    <string name="tab1">CALLS</string>
+    <string name="tab2">CHATS</string>
+    <string name="tab3">CONTACTS</string>
 </resources>

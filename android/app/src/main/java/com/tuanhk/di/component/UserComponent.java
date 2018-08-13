@@ -1,14 +1,12 @@
 package com.tuanhk.di.component;
 
-import com.tuanhk.demo.DemoFragment;
 import com.tuanhk.di.module.UserModule;
 import com.tuanhk.ui.comment.CommentActivity;
-import com.tuanhk.ui.comment.CommentFragment;
 import com.tuanhk.ui.comment.like.CommentLikeActivity;
 import com.tuanhk.ui.main.MainActivity;
 import com.tuanhk.ui.photo.PhotoActivity;
 import com.tuanhk.ui.photo.like.PhotoLikeActivity;
-import com.tuanhk.util.anotation.CustomScope;
+import com.tuanhk.utils.anotation.CustomScope;
 
 import dagger.Component;
 

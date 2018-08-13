@@ -10,4 +10,7 @@
     <color name="brown">#CC6600</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="splash_screen">#cffffa</color>
+    <color name="backgroundBar">#212121</color>
+    <color name="colorTextPrimary">#b7f5f5</color>
 </resources>

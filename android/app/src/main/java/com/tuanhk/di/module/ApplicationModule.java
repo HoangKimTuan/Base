@@ -15,23 +15,18 @@ import com.tuanhk.data.DataManager;
 import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.data.db.AppDbHelper;
 import com.tuanhk.data.db.DbHelper;
-import com.tuanhk.data.db.DbOpenHelper;
 import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
 import com.tuanhk.home.HomeScreenPresenter;
 import com.tuanhk.internal.UserConfigImpl;
 import com.tuanhk.login.LoginScreenPresenter;
-import com.tuanhk.splashscreen.ISplashScreenView;
 import com.tuanhk.splashscreen.SplashScreenPresenter;
-import com.tuanhk.ui.presenter.IPresenter;
-import com.tuanhk.util.AppConstants;
-import com.tuanhk.util.anotation.ApplicationContext;
-import com.tuanhk.util.anotation.DatabaseInfo;
+import com.tuanhk.utils.AppConstants;
+import com.tuanhk.utils.anotation.ApplicationContext;
+import com.tuanhk.utils.anotation.DatabaseInfo;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Singleton;
 

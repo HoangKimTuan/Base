@@ -10,7 +10,7 @@ import com.tuanhk.home.HomeScreenFragment;
 import com.tuanhk.login.LoginScreenFragment;
 import com.tuanhk.navigation.Navigator;
 import com.tuanhk.splashscreen.SplashScreenFragment;
-import com.tuanhk.util.anotation.ApplicationContext;
+import com.tuanhk.utils.anotation.ApplicationContext;
 
 import javax.inject.Singleton;
 
