@@ -14,7 +14,10 @@ import com.tuanhk.data.AppDataManager;
 import com.tuanhk.data.DataManager;
 import com.tuanhk.data.cache.AppStore;
 import com.tuanhk.data.cache.UserConfig;
+import com.tuanhk.data.cache.model.DaoMaster;
+import com.tuanhk.data.cache.model.DaoSession;
 import com.tuanhk.data.db.AppDbHelper;
+import com.tuanhk.data.db.DBOpenHelper;
 import com.tuanhk.data.db.DbHelper;
 import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
@@ -26,11 +29,12 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.greenrobot.greendao.database.Database;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -92,7 +96,15 @@ public class ApplicationModule {
         return new AppRepositoryImpl(service);
     }
 
-
+    @Provides
+    @Singleton
+    DaoSession provideDaoSession(Context context) {
+        String MEDbPassword = BuildConfig.MEDBPASSWORD;
+        DaoMaster.OpenHelper helper = new DBOpenHelper(context, "tuanhk.db");
+        Database db = helper.getEncryptedWritableDb(MEDbPassword);
+        DaoMaster daoMaster = new DaoMaster(db);
+        return daoMaster.newSession();
+    }
 
 
 

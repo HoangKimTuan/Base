@@ -116,11 +116,13 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"http://jsonplaceholder.typicode.com\"")
+            buildConfigField("String", "MEDBPASSWORD", "\"tuanhk1996\"")
         }
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             buildConfigField("String", "BASE_URL", "\"http://jsonplaceholder.typicode.com\"")
+            buildConfigField("String", "MEDBPASSWORD", "tuanhk1996")
         }
     }
 

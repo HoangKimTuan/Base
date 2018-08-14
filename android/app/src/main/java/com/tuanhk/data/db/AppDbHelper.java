@@ -22,7 +22,7 @@ public class AppDbHelper implements DbHelper {
     private final DaoSession mDaoSession;
 
     @Inject
-    public AppDbHelper(DbOpenHelper dbOpenHelper) {
+    public AppDbHelper(DBOpenHelper dbOpenHelper) {
         this.mDaoSession = new DaoMaster(dbOpenHelper.getWritableDb()).newSession();
     }
 
