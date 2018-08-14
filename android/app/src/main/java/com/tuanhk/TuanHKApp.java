@@ -4,10 +4,10 @@ import android.app.Application;
 
 import com.tuanhk.di.component.ApplicationComponent;
 import com.tuanhk.di.component.DaggerApplicationComponent;
-import com.tuanhk.di.component.DaggerDemoComponent;
-import com.tuanhk.di.component.DemoComponent;
+import com.tuanhk.di.component.DaggerUserComponent;
+import com.tuanhk.di.component.UserComponent;
 import com.tuanhk.di.module.ApplicationModule;
-import com.tuanhk.di.module.DemoModule;
+import com.tuanhk.di.module.UserModule;
 
 /**
  * Created by cpu10225 on 14/11/2017.
@@ -16,7 +16,7 @@ import com.tuanhk.di.module.DemoModule;
 public class TuanHKApp extends Application {
     private static TuanHKApp _instance;
     private ApplicationComponent mApplicationComponent;
-    private DemoComponent mDemoComponent;
+    private UserComponent mUserComponent;
 
     public static TuanHKApp instance() {
         return _instance;
@@ -29,8 +29,8 @@ public class TuanHKApp extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
 
-        mDemoComponent = DaggerDemoComponent.builder()
-                .demoModule(new DemoModule())
+        mUserComponent = DaggerUserComponent.builder()
+                .userModule(new UserModule())
                 .applicationComponent(mApplicationComponent)
                 .build();
     }
@@ -39,7 +39,7 @@ public class TuanHKApp extends Application {
         return mApplicationComponent;
     }
 
-    public DemoComponent getDemoComponent() {
-        return mDemoComponent;
+    public UserComponent getDemoComponent() {
+        return mUserComponent;
     }
 }

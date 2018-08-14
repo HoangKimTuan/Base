@@ -1,13 +1,10 @@
 package com.tuanhk.ui.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.tuanhk.TuanHKApp;
 import com.tuanhk.di.component.ApplicationComponent;
-import com.tuanhk.di.component.DemoComponent;
 import com.tuanhk.di.component.UserComponent;
 import com.tuanhk.navigation.Navigator;
 
@@ -39,7 +35,7 @@ public abstract class BaseFragment extends Fragment {
     protected final Navigator navigator = TuanHKApp.instance().getAppComponent().navigator();
 //    protected final UserConfig userConfig = AndroidApplication.instance().getAppComponent().userConfig();
 
-    protected DemoComponent getDemoComponent() {
+    protected UserComponent getDemoComponent() {
         return TuanHKApp.instance().getDemoComponent();
     }
     public ApplicationComponent getAppComponent() {

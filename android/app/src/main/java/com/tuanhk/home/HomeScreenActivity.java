@@ -12,8 +12,8 @@ import com.tuanhk.R;
 import com.tuanhk.ui.activity.UserBaseActivity;
 import com.tuanhk.ui.fragment.BaseFragment;
 import com.tuanhk.home.calls.CallsFragment;
-import com.tuanhk.ui.fragment.tab_home.ChatFragment;
-import com.tuanhk.ui.fragment.tab_home.ContactsFragment;
+import com.tuanhk.home.chat.ChatFragment;
+import com.tuanhk.home.contacts.ContactsFragment;
 import com.tuanhk.ui.viewpager.HomePagerAdapter;
 
 

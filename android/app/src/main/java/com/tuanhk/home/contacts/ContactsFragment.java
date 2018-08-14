@@ -1,4 +1,4 @@
-package com.tuanhk.ui.fragment.tab_home;
+package com.tuanhk.home.contacts;
 
 
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import com.tuanhk.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatFragment extends Fragment {
+public class ContactsFragment extends Fragment {
 
 
-    public ChatFragment() {
+    public ContactsFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
 }
