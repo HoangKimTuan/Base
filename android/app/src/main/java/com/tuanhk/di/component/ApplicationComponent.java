@@ -24,16 +24,21 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = ApplicationModule.class)
-public interface ApplicationComponent {
-    void inject(TuanHKApp app);
-    Application application();
-    DataManager dataManager();
+public abstract class ApplicationComponent {
+
+    public static ApplicationComponent create(Application application) {
+        return DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(application))
+                .build();
+    }
+
+    public abstract void inject(TuanHKApp tuanHKApp);
+    public abstract Application application();
     @ApplicationContext
-    Context context();
-    Navigator navigator();
-    AppStore.Repository appRepository();
-    void inject(SplashScreenFragment splashScreenFragment);
-    void inject(LoginScreenFragment loginScreenFragment);
-    void inject(HomeScreenFragment homeScreenFragment);
-    void inject(CallsFragment callsFragment);
+    public abstract Context context();
+    public abstract Navigator navigator();
+    public abstract AppStore.Repository appRepository();
+    public abstract void inject(SplashScreenFragment splashScreenFragment);
+    public abstract void inject(LoginScreenFragment loginScreenFragment);
+    public abstract void inject(HomeScreenFragment homeScreenFragment);
 }

@@ -40,7 +40,7 @@ public class CallsFragment extends BaseFragment implements ICallsView, CallsAdap
 
     @Override
     protected void setupFragmentComponent() {
-        getAppComponent().inject(this);
+        getUserComponent().inject(this);
     }
 
     @Override

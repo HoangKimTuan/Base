@@ -1,6 +1,7 @@
 package com.tuanhk.di.component;
 
 import com.tuanhk.di.module.UserModule;
+import com.tuanhk.home.calls.CallsFragment;
 import com.tuanhk.utils.anotation.CustomScope;
 
 import dagger.Component;
@@ -13,4 +14,5 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = {UserModule.class})
 public interface UserComponent {
 
+    void inject(CallsFragment callsFragment);
 }

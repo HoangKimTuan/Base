@@ -100,13 +100,12 @@ public class ApplicationModule {
     @Provides
     @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpClient)
                 .build();
-        return retrofit;
     }
 
     @Provides
@@ -131,30 +130,6 @@ public class ApplicationModule {
     @Singleton
     UserConfig providesUserConfig(SharedPreferences sharedPreferences) {
         return new UserConfigImpl(sharedPreferences);
-    }
-
-    @Provides
-    @Singleton
-    SplashScreenPresenter provideSplashScreenPresenterer() {
-        return new SplashScreenPresenter();
-    }
-
-    @Provides
-    @Singleton
-    LoginScreenPresenter provideLoginScreenPresenterer(UserConfig userConfig) {
-        return new LoginScreenPresenter(userConfig);
-    }
-
-    @Provides
-    @Singleton
-    HomeScreenPresenter provideHomeScreenPresenterer(UserConfig userConfig) {
-        return new HomeScreenPresenter(userConfig);
-    }
-
-    @Provides
-    @Singleton
-    CallsPresenter provideCallsPresenterer(AppStore.Repository appStoreRepository) {
-        return new CallsPresenter(appStoreRepository);
     }
 
     @Provides

@@ -35,8 +35,8 @@ public abstract class BaseFragment extends Fragment {
     protected final Navigator navigator = TuanHKApp.instance().getAppComponent().navigator();
 //    protected final UserConfig userConfig = AndroidApplication.instance().getAppComponent().userConfig();
 
-    protected UserComponent getDemoComponent() {
-        return TuanHKApp.instance().getDemoComponent();
+    protected UserComponent getUserComponent() {
+        return TuanHKApp.instance().getUserComponent();
     }
     public ApplicationComponent getAppComponent() {
         return TuanHKApp.instance().getAppComponent();

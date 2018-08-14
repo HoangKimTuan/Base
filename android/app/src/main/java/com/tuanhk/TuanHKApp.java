@@ -3,10 +3,8 @@ package com.tuanhk;
 import android.app.Application;
 
 import com.tuanhk.di.component.ApplicationComponent;
-import com.tuanhk.di.component.DaggerApplicationComponent;
 import com.tuanhk.di.component.DaggerUserComponent;
 import com.tuanhk.di.component.UserComponent;
-import com.tuanhk.di.module.ApplicationModule;
 import com.tuanhk.di.module.UserModule;
 
 /**
@@ -26,8 +24,8 @@ public class TuanHKApp extends Application {
     public void onCreate() {
         super.onCreate();
         _instance = this;
-        mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this)).build();
+        mApplicationComponent = ApplicationComponent.create(this);
+        mApplicationComponent.inject(this);
 
         mUserComponent = DaggerUserComponent.builder()
                 .userModule(new UserModule())
@@ -39,7 +37,7 @@ public class TuanHKApp extends Application {
         return mApplicationComponent;
     }
 
-    public UserComponent getDemoComponent() {
+    public UserComponent getUserComponent() {
         return mUserComponent;
     }
 }
