@@ -19,18 +19,12 @@ import com.tuanhk.data.db.DbHelper;
 import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
 import com.tuanhk.data.repository.AppRepositoryImpl;
-import com.tuanhk.home.HomeScreenPresenter;
-import com.tuanhk.home.calls.CallsPresenter;
 import com.tuanhk.internal.UserConfigImpl;
-import com.tuanhk.login.LoginScreenPresenter;
-import com.tuanhk.splashscreen.SplashScreenPresenter;
 import com.tuanhk.utils.AppConstants;
-import com.tuanhk.utils.anotation.ApplicationContext;
-import com.tuanhk.utils.anotation.DatabaseInfo;
+import com.tuanhk.di.anotation.DatabaseInfo;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tuanhk.utils.anotation.UserScope;
 
 import javax.inject.Singleton;
 
@@ -51,18 +45,13 @@ public class ApplicationModule {
     }
 
     @Provides
-    @ApplicationContext
+    @Singleton
     Context provideContext() {
         return mApplication;
     }
 
     @Provides
-    @DatabaseInfo
-    String provideDatabaseName() {
-        return AppConstants.DB_NAME;
-    }
-
-    @Provides
+    @Singleton
     Application provideApplication() {
         return mApplication;
     }
@@ -75,37 +64,45 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Cache provideHttpCache(Application application) {
-        int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(application.getCacheDir(), cacheSize);
-        return cache;
-    }
+    Retrofit provideRetrofit() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 
-    @Provides
-    @Singleton
-    Gson provideGson() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        return gsonBuilder.create();
-    }
-
-    @Provides
-    @Singleton
-    OkHttpClient provideOkhttpClient(Cache cache) {
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.cache(cache);
-        return client.build();
-    }
-
-    @Provides
-    @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpClient)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    UserConfig providesUserConfig(SharedPreferences sharedPreferences) {
+        return new UserConfigImpl(sharedPreferences);
+    }
+
+    @Provides
+    AppStore.RequestService providesAccountService(Retrofit retrofit) {
+        return retrofit.create(AppStore.RequestService.class);
+    }
+
+    @Provides
+    AppStore.Repository providesAccountRepository(AppStore.RequestService service) {
+        return new AppRepositoryImpl(service);
+    }
+
+
+
+
+
+
+
+
+    @Provides
+    @DatabaseInfo
+    String provideDatabaseName() {
+        return AppConstants.DB_NAME;
     }
 
     @Provides
@@ -126,19 +123,5 @@ public class ApplicationModule {
         return appDataManager;
     }
 
-    @Provides
-    @Singleton
-    UserConfig providesUserConfig(SharedPreferences sharedPreferences) {
-        return new UserConfigImpl(sharedPreferences);
-    }
 
-    @Provides
-    AppStore.RequestService providesAccountService(Retrofit retrofit) {
-        return retrofit.create(AppStore.RequestService.class);
-    }
-
-    @Provides
-    AppStore.Repository providesAccountRepository(AppStore.RequestService service) {
-        return new AppRepositoryImpl(service);
-    }
 }

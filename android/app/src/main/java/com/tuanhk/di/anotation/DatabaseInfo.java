@@ -1,11 +1,11 @@
-package com.tuanhk.utils.anotation;
+package com.tuanhk.di.anotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import javax.inject.Scope;
+import javax.inject.Qualifier;
 
-@Scope
+@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UserScope {
+public @interface DatabaseInfo {
 }

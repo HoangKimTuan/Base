@@ -1,4 +1,4 @@
-package com.tuanhk.utils.anotation;
+package com.tuanhk.di.anotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

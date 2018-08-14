@@ -2,7 +2,7 @@ package com.tuanhk.di.component;
 
 import com.tuanhk.di.module.UserModule;
 import com.tuanhk.home.calls.CallsFragment;
-import com.tuanhk.utils.anotation.CustomScope;
+import com.tuanhk.di.anotation.CustomScope;
 
 import dagger.Component;
 

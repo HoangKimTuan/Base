@@ -3,8 +3,7 @@ package com.tuanhk.data.db;
 import android.content.Context;
 
 import com.tuanhk.data.db.model.DaoMaster;
-import com.tuanhk.utils.anotation.ApplicationContext;
-import com.tuanhk.utils.anotation.DatabaseInfo;
+import com.tuanhk.di.anotation.DatabaseInfo;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -18,7 +17,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DbOpenHelper extends DaoMaster.OpenHelper {
     @Inject
-    public DbOpenHelper(@ApplicationContext Context context, @DatabaseInfo String name) {
+    public DbOpenHelper(Context context, @DatabaseInfo String name) {
         super(context, name);
     }
 
