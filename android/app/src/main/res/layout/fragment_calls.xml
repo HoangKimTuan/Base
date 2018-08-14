@@ -5,19 +5,18 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:id="@+id/home"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listview"
+        style="@style/RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/tab1"
-        android:layout_below="@+id/home"
+        android:layout_below="@+id/listview"
         android:textSize="30sp" />
 
 </RelativeLayout>

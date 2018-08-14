@@ -20,6 +20,7 @@ import com.tuanhk.data.network.ApiHelper;
 import com.tuanhk.data.network.AppApiHelper;
 import com.tuanhk.data.repository.AppRepositoryImpl;
 import com.tuanhk.home.HomeScreenPresenter;
+import com.tuanhk.home.calls.CallsPresenter;
 import com.tuanhk.internal.UserConfigImpl;
 import com.tuanhk.login.LoginScreenPresenter;
 import com.tuanhk.splashscreen.SplashScreenPresenter;
@@ -148,6 +149,12 @@ public class ApplicationModule {
     @Singleton
     HomeScreenPresenter provideHomeScreenPresenterer(UserConfig userConfig) {
         return new HomeScreenPresenter(userConfig);
+    }
+
+    @Provides
+    @Singleton
+    CallsPresenter provideCallsPresenterer(AppStore.Repository appStoreRepository) {
+        return new CallsPresenter(appStoreRepository);
     }
 
     @Provides

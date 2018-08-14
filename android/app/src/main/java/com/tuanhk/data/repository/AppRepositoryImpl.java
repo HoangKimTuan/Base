@@ -9,6 +9,8 @@ import com.tuanhk.data.network.model.Post;
 import java.util.List;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class AppRepositoryImpl implements AppStore.Repository {
 
@@ -20,7 +22,7 @@ public class AppRepositoryImpl implements AppStore.Repository {
 
     @Override
     public Observable<List<Post>> getPostList() {
-        return null;
+        return mRequestService.getPostList();
     }
 
     @Override

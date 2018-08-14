@@ -13,4 +13,5 @@
     <color name="splash_screen">#cffffa</color>
     <color name="backgroundBar">#212121</color>
     <color name="colorTextPrimary">#b7f5f5</color>
+    <color name="silver">#e3e6e7</color>
 </resources>

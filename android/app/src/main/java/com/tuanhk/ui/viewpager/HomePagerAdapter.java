@@ -32,4 +32,9 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         mFragmentList.add(fragment);
     }
 
+    public void addAllFragment(List<Fragment> fragmentList) {
+        for (Fragment fragment : fragmentList) {
+            addFragment(fragment);
+        }
+    }
 }

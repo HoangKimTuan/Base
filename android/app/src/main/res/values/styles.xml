@@ -15,4 +15,12 @@
         <item name="colorAccent">@color/white</item>
     </style>
 
+    <style name="RecyclerView">
+        <item name="android:clipChildren">true</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:smoothScrollbar">true</item>
+    </style>
+
 </resources>

@@ -11,13 +11,14 @@ import android.view.MenuItem;
 import com.tuanhk.R;
 import com.tuanhk.ui.activity.UserBaseActivity;
 import com.tuanhk.ui.fragment.BaseFragment;
-import com.tuanhk.ui.fragment.tab_home.CallsFragment;
+import com.tuanhk.home.calls.CallsFragment;
 import com.tuanhk.ui.fragment.tab_home.ChatFragment;
 import com.tuanhk.ui.fragment.tab_home.ContactsFragment;
 import com.tuanhk.ui.viewpager.HomePagerAdapter;
 
 
 import butterknife.BindView;
+import butterknife.OnPageChange;
 
 public class HomeScreenActivity extends UserBaseActivity {
 
@@ -32,13 +33,11 @@ public class HomeScreenActivity extends UserBaseActivity {
         return R.layout.activity_home_screen;
     }
 
+    @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
 
-    //This is our viewPager
-    private ViewPager viewPager;
-
-
-    //Fragments
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
     ChatFragment chatFragment;
     CallsFragment callsFragment;
@@ -48,12 +47,6 @@ public class HomeScreenActivity extends UserBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Initializing viewPager
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        //Initializing the bottomNavigationView
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -74,58 +67,29 @@ public class HomeScreenActivity extends UserBaseActivity {
                     }
                 });
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (prevMenuItem != null) {
-                    prevMenuItem.setChecked(false);
-                }
-                else
-                {
-                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
-                }
-                Log.d("page", "onPageSelected: "+position);
-                bottomNavigationView.getMenu().getItem(position).setChecked(true);
-                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-       /*  //Disable ViewPager Swipe
-
-       viewPager.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                return true;
-            }
-        });
-
-        */
-
         setupViewPager(viewPager);
+    }
+
+    @OnPageChange(value = R.id.viewpager, callback = OnPageChange.Callback.PAGE_SELECTED)
+    public void onPageSelected(int newPosition) {
+        if (prevMenuItem != null) {
+            prevMenuItem.setChecked(false);
+        } else {
+            bottomNavigationView.getMenu().getItem(0).setChecked(false);
+        }
+        Log.d("page", "onPageSelected: " + newPosition);
+        bottomNavigationView.getMenu().getItem(newPosition).setChecked(true);
+        prevMenuItem = bottomNavigationView.getMenu().getItem(newPosition);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         HomePagerAdapter adapter = new HomePagerAdapter(getSupportFragmentManager());
-        callsFragment=new CallsFragment();
-        chatFragment=new ChatFragment();
-        contactsFragment=new ContactsFragment();
+        callsFragment = new CallsFragment();
+        chatFragment = new ChatFragment();
+        contactsFragment = new ContactsFragment();
         adapter.addFragment(callsFragment);
         adapter.addFragment(chatFragment);
         adapter.addFragment(contactsFragment);
         viewPager.setAdapter(adapter);
     }
-
 }
