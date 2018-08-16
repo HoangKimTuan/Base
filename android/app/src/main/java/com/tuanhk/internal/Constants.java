@@ -4,10 +4,10 @@ public interface Constants {
 
     String PREF_AUTO_LOGIN = "pref_auto_login";
 
-    public interface REQUEST_API {
-        public static final String ENDPOINT_GET_POSTS = "/posts";
-        public static final String ENDPOINT_GET_COMMENTS = ENDPOINT_GET_POSTS + "/{id}/comments";
-        public static final String ENDPOINT_GET_ALBUMS = "/albums";
-        public static final String ENDPOINT_GET_PHOTOS = ENDPOINT_GET_ALBUMS + "/{id}/photos";
+    int LIMIT_ITEM_LIST = 10;
+
+    interface REQUEST_API {
+       String ENDPOINT_GET_POSTS = "/posts";
+//        public static final String ENDPOINT_GET_COMMENTS = ENDPOINT_GET_POSTS + "/{id}/comments";
     }
 }
