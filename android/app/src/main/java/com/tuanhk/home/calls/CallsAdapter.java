@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tuanhk.R;
-import com.tuanhk.data.network.model.Post;
+import com.tuanhk.data.api.entity.Post;
 import com.tuanhk.ui.adapter.AbsRecyclerAdapter;
 import com.tuanhk.ui.recyclerview.OnItemClickListener;
 

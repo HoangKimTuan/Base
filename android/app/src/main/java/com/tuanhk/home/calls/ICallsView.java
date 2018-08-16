@@ -1,7 +1,7 @@
 package com.tuanhk.home.calls;
 
 
-import com.tuanhk.data.network.model.Post;
+import com.tuanhk.data.api.entity.Post;
 
 import java.util.List;
 

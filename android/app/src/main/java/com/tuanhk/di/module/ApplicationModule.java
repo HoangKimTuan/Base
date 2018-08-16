@@ -10,10 +10,12 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.tuanhk.BuildConfig;
+import com.tuanhk.data.api.mapper.PlatformDaoMapper;
 import com.tuanhk.data.cache.AppStore;
 import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.data.cache.model.DaoMaster;
 import com.tuanhk.data.cache.model.DaoSession;
+import com.tuanhk.data.repository.AppLocalStorageImpl;
 import com.tuanhk.data.repository.AppRepositoryImpl;
 import com.tuanhk.data.util.DBOpenHelper;
 import com.tuanhk.internal.UserConfigImpl;
@@ -74,6 +76,20 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    DaoSession provideDaoSession(Context context) {
+        DaoMaster.OpenHelper helper = new DBOpenHelper(context, "tuanhk.db");
+        Database db = helper.getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(db);
+        return daoMaster.newSession();
+    }
+
+    @Provides
+    PlatformDaoMapper providesPlatformDaoMapper() {
+        return new PlatformDaoMapper();
+    }
+
+    @Provides
+    @Singleton
     UserConfig providesUserConfig(SharedPreferences sharedPreferences) {
         return new UserConfigImpl(sharedPreferences);
     }
@@ -84,17 +100,13 @@ public class ApplicationModule {
     }
 
     @Provides
-    AppStore.Repository providesAccountRepository(AppStore.RequestService service) {
+    AppStore.Repository providesAppRepository(AppStore.RequestService service) {
         return new AppRepositoryImpl(service);
     }
 
     @Provides
-    @Singleton
-    DaoSession provideDaoSession(Context context) {
-        String MEDbPassword = BuildConfig.MEDBPASSWORD;
-        DaoMaster.OpenHelper helper = new DBOpenHelper(context, "tuanhk.db");
-        Database db = helper.getEncryptedWritableDb(MEDbPassword);
-        DaoMaster daoMaster = new DaoMaster(db);
-        return daoMaster.newSession();
+    AppStore.LocalStorage providesAppLocalStorage(DaoSession daoSession, PlatformDaoMapper platformDaoMapper) {
+        return new AppLocalStorageImpl(daoSession, platformDaoMapper);
     }
+
 }

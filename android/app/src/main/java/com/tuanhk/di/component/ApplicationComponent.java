@@ -34,6 +34,7 @@ public abstract class ApplicationComponent {
     public abstract Context context();
     public abstract Navigator navigator();
     public abstract AppStore.Repository appRepository();
+    public abstract AppStore.LocalStorage localStorage();
     public abstract void inject(SplashScreenFragment splashScreenFragment);
     public abstract void inject(LoginScreenFragment loginScreenFragment);
     public abstract void inject(HomeScreenFragment homeScreenFragment);

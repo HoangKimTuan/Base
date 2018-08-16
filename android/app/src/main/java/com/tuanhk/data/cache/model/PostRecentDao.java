@@ -23,10 +23,9 @@ public class PostRecentDao extends AbstractDao<PostRecent, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property userId = new Property(0, long.class, "userId", true, "USER_ID");
-        public final static Property id = new Property(1, long.class, "id", false, "ID");
-        public final static Property title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property body = new Property(3, String.class, "body", false, "BODY");
+        public final static Property id = new Property(0, long.class, "id", true, "ID");
+        public final static Property title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property body = new Property(2, String.class, "body", false, "BODY");
     }
 
 
@@ -42,10 +41,9 @@ public class PostRecentDao extends AbstractDao<PostRecent, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"POST_RECENT\" (" + //
-                "\"USER_ID\" INTEGER PRIMARY KEY NOT NULL ," + // 0: userId
-                "\"ID\" INTEGER," + // 1: id
-                "\"TITLE\" TEXT," + // 2: title
-                "\"BODY\" TEXT);"); // 3: body
+                "\"ID\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
+                "\"TITLE\" TEXT," + // 1: title
+                "\"BODY\" TEXT);"); // 2: body
     }
 
     /** Drops the underlying database table. */
@@ -58,24 +56,19 @@ public class PostRecentDao extends AbstractDao<PostRecent, Long> {
     protected final void bindValues(DatabaseStatement stmt, PostRecent entity) {
         stmt.clearBindings();
 
-        long userId = entity.userId;
-        if (userId != 0) {
-            stmt.bindLong(1, userId);
-        }
-
         long id = entity.id;
         if (id != 0) {
-            stmt.bindLong(2, id);
+            stmt.bindLong(1, id);
         }
 
         String title = entity.title;
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
 
         String body = entity.body;
         if (body != null) {
-            stmt.bindString(4, body);
+            stmt.bindString(3, body);
         }
     }
 
@@ -83,24 +76,19 @@ public class PostRecentDao extends AbstractDao<PostRecent, Long> {
     protected final void bindValues(SQLiteStatement stmt, PostRecent entity) {
         stmt.clearBindings();
 
-        long userId = entity.userId;
-        if (userId != 0) {
-            stmt.bindLong(1, userId);
-        }
-
         long id = entity.id;
         if (id != 0) {
-            stmt.bindLong(2, id);
+            stmt.bindLong(1, id);
         }
 
         String title = entity.title;
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
 
         String body = entity.body;
         if (body != null) {
-            stmt.bindString(4, body);
+            stmt.bindString(3, body);
         }
     }
 
@@ -118,21 +106,20 @@ public class PostRecentDao extends AbstractDao<PostRecent, Long> {
 
     @Override
     public void readEntity(Cursor cursor, PostRecent entity, int offset) {
-        entity.userId = cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
-        entity.id = cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1);
-        entity.title = cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2);
-        entity.body = cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3);
+        entity.id = cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 0);
+        entity.title = cursor.isNull(offset + 2) ? null : cursor.getString(offset + 1);
+        entity.body = cursor.isNull(offset + 3) ? null : cursor.getString(offset + 2);
      }
 
     @Override
     protected final Long updateKeyAfterInsert(PostRecent entity, long rowId) {
-        return entity.userId;
+        return entity.id;
     }
 
     @Override
     public Long getKey(PostRecent entity) {
         if(entity != null) {
-            return entity.userId;
+            return entity.id;
         } else {
             return null;
         }

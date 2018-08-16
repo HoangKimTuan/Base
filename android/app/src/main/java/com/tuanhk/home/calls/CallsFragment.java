@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.tuanhk.R;
-import com.tuanhk.data.network.model.Post;
+import com.tuanhk.data.api.entity.Post;
 import com.tuanhk.ui.fragment.BaseFragment;
 import com.tuanhk.ui.recyclerview.HorizontalDividerDecoration;
 import com.tuanhk.utils.AndroidUtils;
@@ -25,7 +25,7 @@ import butterknife.BindView;
 public class CallsFragment extends BaseFragment implements ICallsView, CallsAdapter.OnClickPostListener {
 
     @Inject
-    CallsPresenter presenter;
+    CallsPresenter mPresenter;
 
     private static final int PADDING_ITEM = 60;
     @BindView(R.id.listview)
@@ -51,7 +51,7 @@ public class CallsFragment extends BaseFragment implements ICallsView, CallsAdap
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.attachView(this);
+        mPresenter.attachView(this);
         mListView.setHasFixedSize(true);
         mListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mListView.addItemDecoration(new HorizontalDividerDecoration(getActivity(), AndroidUtils.dp(PADDING_ITEM), R.drawable.line_divider));
@@ -67,12 +67,12 @@ public class CallsFragment extends BaseFragment implements ICallsView, CallsAdap
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presenter.listBankSupport();
+        mPresenter.listBankSupport();
     }
 
     @Override
-    public void onClickPost(Post card) {
-
+    public void onClickPost(Post post) {
+        mPresenter.putPost(post);
     }
 
     @Override

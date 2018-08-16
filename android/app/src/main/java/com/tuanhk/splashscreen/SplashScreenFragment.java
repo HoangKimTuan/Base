@@ -40,7 +40,7 @@ public class SplashScreenFragment extends BaseFragment implements ISplashScreenV
             public void run() {
                 gotoLoginScreen();
             }
-        }, 3000);
+        }, 1500);
     }
 
     @Override

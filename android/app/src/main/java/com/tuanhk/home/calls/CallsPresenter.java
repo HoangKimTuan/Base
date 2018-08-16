@@ -1,7 +1,7 @@
 package com.tuanhk.home.calls;
 
 import com.tuanhk.data.cache.AppStore;
-import com.tuanhk.data.network.model.Post;
+import com.tuanhk.data.api.entity.Post;
 import com.tuanhk.ui.presenter.AbstractPresenter;
 
 import java.util.List;
@@ -14,10 +14,12 @@ import rx.schedulers.Schedulers;
 public class CallsPresenter extends AbstractPresenter<ICallsView> {
 
     AppStore.Repository mAppStoreRepository;
+    AppStore.LocalStorage mAppLocalStorage;
 
     @Inject
-    public CallsPresenter(AppStore.Repository appStoreRepository) {
+    CallsPresenter(AppStore.Repository appStoreRepository, AppStore.LocalStorage localStorage) {
         this.mAppStoreRepository = appStoreRepository;
+        this.mAppLocalStorage = localStorage;
     }
 
     public void listBankSupport() {
@@ -32,5 +34,9 @@ public class CallsPresenter extends AbstractPresenter<ICallsView> {
             return;
         }
         mView.addData(postList);
+    }
+
+    public void putPost(Post post) {
+        mAppLocalStorage.put(post);
     }
 }

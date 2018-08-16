@@ -1,16 +1,11 @@
 package com.tuanhk.data.repository;
 
 import com.tuanhk.data.cache.AppStore;
-import com.tuanhk.data.network.model.Album;
-import com.tuanhk.data.network.model.Comment;
-import com.tuanhk.data.network.model.Photo;
-import com.tuanhk.data.network.model.Post;
+import com.tuanhk.data.api.entity.Post;
 
 import java.util.List;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class AppRepositoryImpl implements AppStore.Repository {
 
@@ -25,18 +20,4 @@ public class AppRepositoryImpl implements AppStore.Repository {
         return mRequestService.getPostList();
     }
 
-    @Override
-    public Observable<List<Comment>> getCommentList(Integer postId) {
-        return null;
-    }
-
-    @Override
-    public Observable<List<Album>> getAlbumList() {
-        return null;
-    }
-
-    @Override
-    public Observable<List<Photo>> getPhotoList(Integer albumId) {
-        return null;
-    }
 }

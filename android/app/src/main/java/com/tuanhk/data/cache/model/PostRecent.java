@@ -13,25 +13,17 @@ import org.greenrobot.greendao.annotation.Generated;
 public class PostRecent {
 
     @Id
-    public long userId;
     public long id;
     public String title;
     public String body;
     @Generated(hash = 1802909211)
-    public PostRecent(long userId, long id, String title, String body) {
-        this.userId = userId;
+    public PostRecent(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
     }
     @Generated(hash = 1268247132)
     public PostRecent() {
-    }
-    public long getUserId() {
-        return this.userId;
-    }
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
     public long getId() {
         return this.id;
