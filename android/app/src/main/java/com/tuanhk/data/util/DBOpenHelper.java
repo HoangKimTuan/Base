@@ -1,4 +1,4 @@
-package com.tuanhk.data.db;
+package com.tuanhk.data.util;
 
 import android.content.Context;
 

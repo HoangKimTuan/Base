@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: 'org.greenrobot.greendao'
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
