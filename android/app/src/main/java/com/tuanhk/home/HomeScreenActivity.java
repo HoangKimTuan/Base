@@ -49,22 +49,19 @@ public class HomeScreenActivity extends UserBaseActivity {
         super.onCreate(savedInstanceState);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.action_call:
-                                viewPager.setCurrentItem(0);
-                                break;
-                            case R.id.action_chat:
-                                viewPager.setCurrentItem(1);
-                                break;
-                            case R.id.action_contact:
-                                viewPager.setCurrentItem(2);
-                                break;
-                        }
-                        return false;
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.action_call:
+                            viewPager.setCurrentItem(0);
+                            break;
+                        case R.id.action_chat:
+                            viewPager.setCurrentItem(1);
+                            break;
+                        case R.id.action_contact:
+                            viewPager.setCurrentItem(2);
+                            break;
                     }
+                    return false;
                 });
 
         setupViewPager(viewPager);

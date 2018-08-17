@@ -1,8 +1,11 @@
 package com.tuanhk.di.component;
 
+import com.tuanhk.data.cache.AppStore;
+import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.di.anotation.UserScope;
 import com.tuanhk.di.module.UserModule;
 import com.tuanhk.home.calls.CallsFragment;
+import com.tuanhk.home.contacts.ContactsFragment;
 
 import dagger.Component;
 
@@ -15,4 +18,5 @@ import dagger.Component;
 public interface UserComponent {
 
     void inject(CallsFragment callsFragment);
+    void inject(ContactsFragment contactsFragment);
 }

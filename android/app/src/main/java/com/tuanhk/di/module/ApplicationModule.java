@@ -62,51 +62,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit() {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BuildConfig.BASE_URL)
-                .client(okHttpClient)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    DaoSession provideDaoSession(Context context) {
-        DaoMaster.OpenHelper helper = new DBOpenHelper(context, "tuanhk.db");
-        Database db = helper.getWritableDb();
-        DaoMaster daoMaster = new DaoMaster(db);
-        return daoMaster.newSession();
-    }
-
-    @Provides
-    PlatformDaoMapper providesPlatformDaoMapper() {
-        return new PlatformDaoMapper();
-    }
-
-    @Provides
-    @Singleton
     UserConfig providesUserConfig(SharedPreferences sharedPreferences) {
         return new UserConfigImpl(sharedPreferences);
-    }
-
-    @Provides
-    AppStore.RequestService providesAccountService(Retrofit retrofit) {
-        return retrofit.create(AppStore.RequestService.class);
-    }
-
-    @Provides
-    AppStore.Repository providesAppRepository(AppStore.RequestService service) {
-        return new AppRepositoryImpl(service);
-    }
-
-    @Provides
-    AppStore.LocalStorage providesAppLocalStorage(DaoSession daoSession, PlatformDaoMapper platformDaoMapper) {
-        return new AppLocalStorageImpl(daoSession, platformDaoMapper);
     }
 
 }

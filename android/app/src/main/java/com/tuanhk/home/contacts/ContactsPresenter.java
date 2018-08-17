@@ -1,16 +1,16 @@
-package com.tuanhk.home;
+package com.tuanhk.home.contacts;
 
 import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.ui.presenter.AbstractPresenter;
 
 import javax.inject.Inject;
 
-public class HomeScreenPresenter extends AbstractPresenter<IHomeScreenView> {
+public class ContactsPresenter extends AbstractPresenter<IContactsView> {
 
     UserConfig mUserConfig;
 
     @Inject
-    public HomeScreenPresenter(UserConfig userConfig) {
+    public ContactsPresenter(UserConfig userConfig) {
         mUserConfig = userConfig;
     }
 
