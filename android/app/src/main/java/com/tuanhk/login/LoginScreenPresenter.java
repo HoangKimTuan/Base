@@ -7,17 +7,11 @@ import javax.inject.Inject;
 
 public class LoginScreenPresenter extends AbstractPresenter<ILoginScreenView> {
 
-    UserConfig mUserConfig;
+    private UserConfig mUserConfig;
 
     @Inject
-    public LoginScreenPresenter(UserConfig userConfig) {
+    LoginScreenPresenter(UserConfig userConfig) {
         mUserConfig = userConfig;
-    }
-
-    public void autoLogin() {
-        if (mUserConfig.hasCurrentUser()) {
-            mView.gotoHomeScreen();
-        }
     }
 
     public void saveLogin(boolean status) {

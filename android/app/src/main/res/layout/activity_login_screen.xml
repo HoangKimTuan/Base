@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginScreenActivity">
 
-    <Button
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

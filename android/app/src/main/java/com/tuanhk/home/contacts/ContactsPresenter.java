@@ -7,10 +7,10 @@ import javax.inject.Inject;
 
 public class ContactsPresenter extends AbstractPresenter<IContactsView> {
 
-    UserConfig mUserConfig;
+    private UserConfig mUserConfig;
 
     @Inject
-    public ContactsPresenter(UserConfig userConfig) {
+    ContactsPresenter(UserConfig userConfig) {
         mUserConfig = userConfig;
     }
 
