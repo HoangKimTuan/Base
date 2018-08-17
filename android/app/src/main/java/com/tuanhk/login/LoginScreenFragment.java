@@ -7,8 +7,6 @@ import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.tuanhk.R;
@@ -22,10 +20,6 @@ public class LoginScreenFragment extends BaseFragment implements ILoginScreenVie
 
     @Inject
     LoginScreenPresenter mPresenter;
-
-    GoogleSignInClient mGoogleSignInClient;
-
-    GoogleSignInOptions gso;
 
     private final int RC_SIGN_IN = 106;
 
@@ -49,23 +43,18 @@ public class LoginScreenFragment extends BaseFragment implements ILoginScreenVie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.attachView(this);
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        updateUI(account);
+        mPresenter.autoSignIn(getContext());
     }
 
     @Override
     public void gotoHomeScreen() {
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        navigator.startHomeActivity(getContext());
+        getActivity().finish();
     }
 
     @OnClick(R.id.login)
     void onClickLogin() {
-        gotoHomeScreen();
+        navigator.startGoogleSignInClient(this, RC_SIGN_IN);
     }
 
     @Override
@@ -84,9 +73,7 @@ public class LoginScreenFragment extends BaseFragment implements ILoginScreenVie
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
+            gotoHomeScreen();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -95,11 +82,6 @@ public class LoginScreenFragment extends BaseFragment implements ILoginScreenVie
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        if (account == null) {
-            return;
-        }
-        mPresenter.saveLogin(true);
-        navigator.startHomeActivity(getContext());
-        getActivity().finish();
+
     }
 }

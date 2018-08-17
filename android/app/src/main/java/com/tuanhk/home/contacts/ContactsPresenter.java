@@ -13,8 +13,4 @@ public class ContactsPresenter extends AbstractPresenter<IContactsView> {
     ContactsPresenter(UserConfig userConfig) {
         mUserConfig = userConfig;
     }
-
-    public void saveLogin(boolean status) {
-        mUserConfig.saveConfigLogin(status);
-    }
 }

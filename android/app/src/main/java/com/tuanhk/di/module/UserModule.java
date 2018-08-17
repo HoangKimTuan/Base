@@ -1,26 +1,20 @@
 package com.tuanhk.di.module;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tuanhk.BuildConfig;
 import com.tuanhk.data.api.mapper.PlatformDaoMapper;
 import com.tuanhk.data.cache.AppStore;
-import com.tuanhk.data.cache.UserConfig;
 import com.tuanhk.data.cache.model.DaoMaster;
 import com.tuanhk.data.cache.model.DaoSession;
 import com.tuanhk.data.repository.AppLocalStorageImpl;
 import com.tuanhk.data.repository.AppRepositoryImpl;
 import com.tuanhk.data.util.DBOpenHelper;
 import com.tuanhk.di.anotation.UserScope;
-import com.tuanhk.internal.UserConfigImpl;
 
 import org.greenrobot.greendao.database.Database;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

@@ -22,9 +22,6 @@ import butterknife.OnClick;
  */
 public class ContactsFragment extends BaseFragment implements IContactsView  {
 
-    GoogleSignInClient mGoogleSignInClient;
-    GoogleSignInOptions gso;
-
     @Inject
     ContactsPresenter mPresenter;
 
@@ -50,23 +47,9 @@ public class ContactsFragment extends BaseFragment implements IContactsView  {
         mPresenter.attachView(this);
     }
 
-    @Override
-    public void backToLoginScreen() {
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(getActivity(), task -> {
-                    navigator.startLoginActivity(getContext());
-                    getActivity().finish();
-                });
-    }
-
     @OnClick(R.id.logout)
     void onLogout() {
-        mPresenter.saveLogin(false);
-        backToLoginScreen();
+        navigator.logout(getActivity());
     }
 
 }
