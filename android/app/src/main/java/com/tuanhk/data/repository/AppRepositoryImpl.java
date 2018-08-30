@@ -5,7 +5,7 @@ import com.tuanhk.data.api.entity.Post;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 public class AppRepositoryImpl implements AppStore.Repository {
 

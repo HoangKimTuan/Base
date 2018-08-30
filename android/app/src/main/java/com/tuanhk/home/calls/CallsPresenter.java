@@ -1,5 +1,7 @@
 package com.tuanhk.home.calls;
 
+import android.annotation.SuppressLint;
+
 import com.tuanhk.data.cache.AppStore;
 import com.tuanhk.data.api.entity.Post;
 import com.tuanhk.internal.Constants;
@@ -9,9 +11,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 public class CallsPresenter extends AbstractPresenter<ICallsView> {
 
@@ -24,9 +26,14 @@ public class CallsPresenter extends AbstractPresenter<ICallsView> {
         this.mAppLocalStorage = localStorage;
     }
 
-    public void listBankSupport() {
+    public int a() {
+        return 2;
+    }
+
+    @SuppressLint("CheckResult")
+    public void loadPost() {
         mAppStoreRepository.getPostList()
-                .flatMap(Observable::from)
+                .flatMap(Observable::fromIterable)
                 .take(Constants.LIMIT_ITEM_LIST)
                 .toList()
                 .subscribeOn(Schedulers.io())

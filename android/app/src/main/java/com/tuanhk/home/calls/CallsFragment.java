@@ -67,7 +67,7 @@ public class CallsFragment extends BaseFragment implements ICallsView, CallsAdap
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.listBankSupport();
+        mPresenter.loadPost();
     }
 
     @Override
